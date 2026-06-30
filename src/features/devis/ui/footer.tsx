@@ -12,9 +12,6 @@ export function Footer({ heading, text }: { heading: string; text: string }) {
         <div className={styles.footerGlow1} aria-hidden="true" />
         <div className={styles.footerGlow2} aria-hidden="true" />
         <div className={styles.footerDots} aria-hidden="true" />
-        <span className={styles.footerWatermark} aria-hidden="true">
-          ↗
-        </span>
         <div className={styles.footerInner}>
           <img className={styles.footerLogo} src="/progix-logo.png" alt="Progix" />
           <h3 className={styles.footerHeading}>{heading}</h3>

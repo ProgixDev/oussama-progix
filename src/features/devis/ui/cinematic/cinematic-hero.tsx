@@ -10,7 +10,7 @@ const TITLE_LEAD = ["L’ingénierie", "logicielle", "qui", "fait"];
 const TITLE_ACCENT = ["grandir", "votre", "entreprise"];
 
 const PROOF = [
-  { to: 107, suffix: "", label: "Projets livrés en production" },
+  { to: 140, suffix: "+", label: "Projets livrés en production" },
   { to: 12, suffix: "", label: "Ingénieurs seniors dédiés" },
   { to: 100, suffix: " %", label: "Propriété du code au client" },
 ];

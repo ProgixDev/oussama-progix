@@ -628,7 +628,7 @@ export function CahierDocument() {
                     }}
                     aria-hidden="true"
                   >
-                    ↗
+                    —
                   </span>
                 </div>
               ))}
@@ -687,21 +687,6 @@ export function CahierDocument() {
                 overflow: "hidden",
               }}
             >
-              <span
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  right: "18px",
-                  bottom: "-22px",
-                  fontSize: "120px",
-                  color: "rgba(56,182,255,.10)",
-                  fontFamily: "var(--font-disp)",
-                  fontWeight: 700,
-                  lineHeight: 1,
-                }}
-              >
-                ↗
-              </span>
               <span
                 style={{
                   fontFamily: "var(--font-disp)",
@@ -1041,12 +1026,12 @@ export function CahierDocument() {
               façon transparente :
             </p>
             <div style={GRID_AUTO}>
-              <FeatureCard icon="↗" iconBg="var(--cyan)" title="Abonnement in-app (stores)">
+              <FeatureCard icon="›" iconBg="var(--cyan)" title="Abonnement in-app (stores)">
                 Abonnements in-app via l’<Strong>App Store</Strong> et le{" "}
                 <Strong>Google Play Store</Strong> (norme imposée par Apple & Google), avec gestion
                 des reçus et des renouvellements.
               </FeatureCard>
-              <FeatureCard icon="↗" iconBg="var(--navy)" title="Un modèle transparent">
+              <FeatureCard icon="›" iconBg="var(--navy)" title="Un modèle transparent">
                 L’utilisateur paie un abonnement clair ; SourcePro ne prélève{" "}
                 <Strong>aucune commission</Strong> sur les achats qu’il réalise ensuite auprès des
                 fournisseurs.
@@ -1292,22 +1277,22 @@ export function CahierDocument() {
               lead="Progix sélectionne les technologies les plus adaptées au besoin, en privilégiant la performance, la rapidité de développement et la maintenabilité. Le choix final de la stack relève de l’expertise de Progix."
             />
             <div style={GRID_AUTO}>
-              <FeatureCard icon="↗" iconBg="var(--cyan)" title="Application mobile cross-platform">
+              <FeatureCard icon="›" iconBg="var(--cyan)" title="Application mobile cross-platform">
                 Une seule base de code pour <Strong>iOS et Android</Strong> : performances natives,
                 interface haut de gamme et délais maîtrisés — idéal pour une app grand public riche
                 en interactions.
               </FeatureCard>
-              <FeatureCard icon="↗" iconBg="var(--navy)" title="Back-office &amp; API">
+              <FeatureCard icon="›" iconBg="var(--navy)" title="Back-office &amp; API">
                 Un panneau web d’administration et une API claire et maintenable pour gérer
                 fournisseurs, produits, catégories, avis et abonnements, avec une montée en charge
                 aisée.
               </FeatureCard>
-              <FeatureCard icon="↗" iconBg="var(--cyan)" title="Base de données optimisée">
+              <FeatureCard icon="›" iconBg="var(--cyan)" title="Base de données optimisée">
                 Une architecture de données optimisée pour la{" "}
                 <Strong>recherche et le filtrage rapides</Strong> (catégories, niveaux de qualité,
                 fiches), taillée pour la solidité et l’intégrité des données.
               </FeatureCard>
-              <FeatureCard icon="↗" iconBg="var(--navy)" title="Hébergement cloud scalable">
+              <FeatureCard icon="›" iconBg="var(--navy)" title="Hébergement cloud scalable">
                 Infrastructure cloud qui s’adapte à la charge utilisateur, avec sauvegardes
                 régulières et supervision — prête à absorber la croissance sans refonte.
               </FeatureCard>
@@ -1499,7 +1484,7 @@ export function CahierDocument() {
                 Temps de réponse fluides, écrans qui se chargent rapidement, recherche et filtres
                 réactifs même avec un volume croissant de fournisseurs et de produits.
               </FeatureCard>
-              <FeatureCard icon="↗" iconBg="var(--cyan)" title="Scalabilité">
+              <FeatureCard icon="›" iconBg="var(--cyan)" title="Scalabilité">
                 Architecture prête à absorber la croissance (montée du nombre d’utilisateurs,
                 extension du catalogue et des catégories) sans refonte structurelle.
               </FeatureCard>
@@ -1647,9 +1632,6 @@ export function CahierDocument() {
               <FeatureCard icon="+" iconBg="var(--navy)" title="Nouvelles catégories">
                 Extension progressive du catalogue à de nouvelles familles de produits.
               </FeatureCard>
-              <FeatureCard icon="+" iconBg="var(--navy)" title="Achats assistés">
-                Intégrations facilitant le passage à l’achat chez les fournisseurs recommandés.
-              </FeatureCard>
               <FeatureCard icon="+" iconBg="var(--navy)" title="Programme de contributeurs">
                 Valorisation des utilisateurs qui enrichissent la base (avis, signalements).
               </FeatureCard>
@@ -1715,21 +1697,6 @@ export function CahierDocument() {
                 overflow: "hidden",
               }}
             >
-              <span
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  right: "18px",
-                  bottom: "-22px",
-                  fontSize: "120px",
-                  color: "rgba(56,182,255,.10)",
-                  fontFamily: "var(--font-disp)",
-                  fontWeight: 700,
-                  lineHeight: 1,
-                }}
-              >
-                ↗
-              </span>
               <span
                 style={{
                   fontFamily: "var(--font-disp)",
@@ -1979,7 +1946,7 @@ export function CahierDocument() {
                     }}
                     aria-hidden="true"
                   >
-                    ↗
+                    —
                   </span>
                   {node}
                 </li>

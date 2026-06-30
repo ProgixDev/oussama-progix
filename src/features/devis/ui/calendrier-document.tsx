@@ -243,35 +243,35 @@ const miles: ReadonlyArray<Mile> = [
     nm: "Au démarrage",
     when: "À la signature et au lancement du Sprint 1",
     amt: "970 €",
-    trig: "↗ Déclenche le cadrage",
+    trig: "Déclenche le cadrage",
   },
   {
     pct: "MOIS 2 · 20 %",
     nm: "Développement",
     when: "Pendant le développement de l’application",
     amt: "970 €",
-    trig: "↗ En cours de réalisation",
+    trig: "En cours de réalisation",
   },
   {
     pct: "MOIS 3 · 20 %",
     nm: "À la publication",
     when: "En fin de Sprint 6, application publiée sur les stores",
     amt: "970 €",
-    trig: "↗ À la livraison",
+    trig: "À la livraison",
   },
   {
     pct: "MOIS 4 · 20 %",
     nm: "Accompagnement",
     when: "Pendant l’accompagnement marketing",
     amt: "970 €",
-    trig: "↗ Suivi & croissance",
+    trig: "Suivi & croissance",
   },
   {
     pct: "MOIS 5 · 20 %",
     nm: "Solde final",
     when: "À l’issue de l’accompagnement (90 jours)",
     amt: "970 €",
-    trig: "↗ Solde final",
+    trig: "Solde final",
   },
 ];
 
@@ -868,7 +868,7 @@ export function CalendrierDocument() {
                   background: "var(--ok)",
                 }}
               >
-                ↗
+                —
               </div>
               <div>
                 <h4
@@ -1107,7 +1107,7 @@ export function CalendrierDocument() {
                     fontSize: "12px",
                   }}
                 >
-                  ↗
+                  —
                 </span>
                 Sprints d’environ{" "}
                 <b style={{ color: "var(--ink)", fontWeight: 600 }}>une semaine</b>, avec une{" "}
@@ -1133,7 +1133,7 @@ export function CalendrierDocument() {
                     fontSize: "12px",
                   }}
                 >
-                  ↗
+                  —
                 </span>
                 <b style={{ color: "var(--ink)", fontWeight: 600 }}>
                   Point d’avancement hebdomadaire
@@ -1159,7 +1159,7 @@ export function CalendrierDocument() {
                     fontSize: "12px",
                   }}
                 >
-                  ↗
+                  —
                 </span>
                 Développement <b style={{ color: "var(--ink)", fontWeight: 600 }}>itératif</b> :
                 chaque sprint livre un incrément testable.
@@ -1199,7 +1199,7 @@ export function CalendrierDocument() {
                     fontSize: "12px",
                   }}
                 >
-                  ↗
+                  —
                 </span>
                 Validation du Client à chaque{" "}
                 <b style={{ color: "var(--ink)", fontWeight: 600 }}>fin de phase clé</b> (design,
@@ -1224,7 +1224,7 @@ export function CalendrierDocument() {
                     fontSize: "12px",
                   }}
                 >
-                  ↗
+                  —
                 </span>
                 Les{" "}
                 <b style={{ color: "var(--ink)", fontWeight: 600 }}>retards imputables au Client</b>{" "}
@@ -1250,7 +1250,7 @@ export function CalendrierDocument() {
                     fontSize: "12px",
                   }}
                 >
-                  ↗
+                  —
                 </span>
                 Toute modification du périmètre fait l’objet d’un accord écrit (voir{" "}
                 <a

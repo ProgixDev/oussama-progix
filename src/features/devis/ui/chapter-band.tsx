@@ -24,9 +24,6 @@ export function ChapterBand({
     <section className={styles.band}>
       <div className={styles.bandDots} aria-hidden="true" />
       <div className={styles.bandGlow} aria-hidden="true" />
-      <span className={styles.bandMark} aria-hidden="true">
-        ↗
-      </span>
       <div className={styles.bandInner}>
         <div className={styles.bandEyebrow}>
           <span className={styles.bandEyebrowBar} aria-hidden="true" />

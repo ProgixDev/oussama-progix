@@ -8,6 +8,7 @@ import { Reveal } from "./reveal";
 import { TiltCard } from "./tilt-card";
 import { Marquee } from "./marquee";
 import { Counter } from "./counter";
+import { GalleryFade } from "./gallery-fade";
 import styles from "./cinematic.module.css";
 
 /* ----------------------------------------------------------------- data --- */
@@ -105,7 +106,7 @@ const leaders: ReadonlyArray<Leader> = [
   {
     nm: "Morgane",
     ro: "Head of Delivery",
-    img: "/team/morgane.jpg",
+    img: "/team/morgane.png",
     ds: "Responsable de la livraison de l’ensemble des projets. Coordination des équipes, suivi client, respect des délais et de la qualité.",
   },
   {
@@ -176,6 +177,24 @@ const team: ReadonlyArray<Member> = [
     tag: "FastAPI · React",
     img: "/team/houssem-ferrani.jpg",
   },
+  {
+    nm: "Hafed",
+    ro: "Mobile Engineer",
+    tag: "Flutter · Dart",
+    img: "/team/hafed.png",
+  },
+  {
+    nm: "Ghassen D.",
+    ro: "Mobile Engineer",
+    tag: "React Native · Expo",
+    img: "/team/ghassen.png",
+  },
+  {
+    nm: "Ali T.",
+    ro: "Full Stack Engineer",
+    tag: "Next.js · NestJS",
+    img: "/team/ali.png",
+  },
 ];
 
 type StackGroup = { h: string; items: ReadonlyArray<string> };
@@ -237,7 +256,15 @@ const commits: ReadonlyArray<Commit> = [
  * hosted on Supabase (Projix bucket). Videos autoplay muted on loop. */
 const SB = "https://lgpngbxkeuyvjcgrftxa.supabase.co/storage/v1/object/public/Projix/Projects";
 
-type Project = { cat: string; nm: string; p: string; media: string; poster?: string };
+type Project = {
+  cat: string;
+  nm: string;
+  p: string;
+  media?: string;
+  poster?: string;
+  gallery?: readonly string[];
+  combo?: { video: string; phone: string; poster?: string };
+};
 const portfolio: ReadonlyArray<Project> = [
   {
     cat: "Restauration",
@@ -250,31 +277,56 @@ const portfolio: ReadonlyArray<Project> = [
     cat: "Marketplace",
     nm: "Hand2Hand",
     p: "Marketplace mobile entre particuliers — biens et services, messagerie et missions de livraison intégrées.",
-    media: `${SB}/Hand2Hand/hand2hand-homepage.png`,
+    media: `${SB}/Hand2Hand/hand2hand-dem0.mp4`,
+    poster: `${SB}/Hand2Hand/hand2hand-homepage.png`,
   },
   {
-    cat: "Transport · VTC",
+    cat: "Transport · Multi-services",
     nm: "CoRide",
-    p: "Application de VTC en temps réel : réservation de courses, suivi GPS du chauffeur et paiement intégré.",
-    media: `${SB}/CoRide/Splash%20screen.png`,
+    p: "App mobile multi-services (Flutter) : transport privé, livraison et food delivery — app mobile et vitrine web.",
+    combo: {
+      video: `${SB}/CoRide/CoRideVideo.mp4`,
+      phone: `${SB}/CoRide/Splash%20screen.png`,
+      poster: `${SB}/CoRide/PosterImage.png`,
+    },
   },
   {
     cat: "Location de voitures",
     nm: "My Fleet",
     p: "Mise en relation agences ↔ clients : recherche, réservation, inspection et suivi du véhicule.",
-    media: `${SB}/MyFleet/myfleet-homescreen.png`,
+    media: `${SB}/MyFleet/myfleet-demo.mp4`,
+    poster: `${SB}/MyFleet/myfleet-homescreen.png`,
   },
   {
     cat: "Publicité",
     nm: "DriveAds",
     p: "Gestion de campagnes publicitaires diffusées sur véhicules — du ciblage au suivi des performances.",
-    media: `${SB}/DriveAds/driveads-homescreen.png`,
+    media: `${SB}/DriveAds/driveads-demo.mp4`,
+    poster: `${SB}/DriveAds/driveads-homescreen.png`,
   },
   {
     cat: "Restauration · Livraison",
     nm: "Breaking Family",
     p: "App de restaurant : consultation du menu, commande de plats et livraison à domicile.",
-    media: `${SB}/BreakingFamily/breaking-family-home.jpeg`,
+    media: `${SB}/BreakingFamily/breaking-family-demo.mp4`,
+    poster: `${SB}/BreakingFamily/breaking-family-home.jpeg`,
+  },
+  {
+    cat: "Logistique · Expédition",
+    nm: "iBox",
+    p: "Expédition de colis en un geste : mise en relation avec des transporteurs de confiance, partout dans le monde.",
+    gallery: [`${SB}/iBox/IMG_1835.PNG`, `${SB}/iBox/IMG_1838.PNG`, `${SB}/iBox/IMG_1840.PNG`],
+  },
+  {
+    cat: "Rencontres",
+    nm: "Al-aqd",
+    p: "Application de rencontres halal — profils, matchs et messagerie, dans le respect des valeurs de la communauté.",
+    gallery: [
+      `${SB}/Al-aqd/Al-aqd-mainview.jpeg`,
+      `${SB}/Al-aqd/Al-aqd-profile.jpeg`,
+      `${SB}/Al-aqd/Al-aqd-matchlist.jpeg`,
+      `${SB}/Al-aqd/Al-aqd-matches.jpeg`,
+    ],
   },
 ];
 
@@ -317,12 +369,10 @@ const diff: ReadonlyArray<Diff> = [
     h: "Accompagnement marketing inclus",
     p: "On vous forme à acquérir vos utilisateurs. Code + croissance.",
   },
-  { h: "107 projets livrés", p: "Une équipe expérimentée qui sait éviter les pièges et livrer." },
+  { h: "140+ projets livrés", p: "Une équipe expérimentée qui sait éviter les pièges et livrer." },
   { h: "Fièrement montréalaise", p: "Proximité, même fuseau horaire, conformité Loi 25 native." },
   { h: "Vision long terme", p: "On conçoit pour durer 5 à 10 ans, pas pour le court terme." },
 ];
-
-const featured = portfolio[0];
 
 const marqueeItems = [
   "Applications mobiles",
@@ -707,65 +757,94 @@ export function AccueilCinematic() {
                 num="07"
                 eyebrow="Réalisations"
                 title="Des applications mobiles en production"
-                lead="Des apps iOS et Android conçues, développées et publiées sur les stores — voici un aperçu en images et en démo."
+                lead="Des apps iOS et Android conçues, développées et publiées sur les stores — un aperçu de chacune, en démo et en images."
               />
-              {featured ? (
-                <Reveal>
-                  <article className={`${styles.glass} ${styles.featured}`}>
-                    <ProjectMedia
-                      src={featured.media}
-                      poster={featured.poster}
-                      className={styles.featuredVideo}
-                    />
-                    <div className={styles.featuredBody}>
-                      <span className={styles.projBadge}>Projet phare</span>
-                      <div className={styles.projCat} style={{ marginTop: 16 }}>
-                        {featured.cat}
-                      </div>
-                      <h3 className={styles.projName}>{featured.nm}</h3>
-                      <p className={styles.projText}>{featured.p}</p>
-                      <div style={{ display: "flex", gap: 32, marginTop: 22, flexWrap: "wrap" }}>
-                        {[
-                          { v: "iOS · Android", l: "publié sur les stores" },
-                          { v: "100 %", l: "propriété au client" },
-                        ].map((s) => (
-                          <div key={s.l}>
-                            <div className={styles.heroProofNum} style={{ fontSize: 22 }}>
-                              <span>{s.v}</span>
-                            </div>
-                            <div className={styles.heroProofLabel} style={{ marginTop: 4 }}>
-                              {s.l}
-                            </div>
+              <div className={styles.showcaseList}>
+                {portfolio.map((p, i) => (
+                  <Reveal key={p.nm}>
+                    <article
+                      className={`${styles.glass} ${styles.featured} ${
+                        p.combo ? styles.featuredWide : ""
+                      } ${i % 2 === 1 ? styles.featuredReverse : ""}`}
+                    >
+                      {p.combo ? (
+                        <div className={styles.comboWrap}>
+                          <div className={styles.comboBrowser}>
+                            <span className={styles.comboBar} aria-hidden="true">
+                              <span className={styles.comboDot} />
+                              <span className={styles.comboDot} />
+                              <span className={styles.comboDot} />
+                            </span>
+                            <video
+                              className={styles.comboVideo}
+                              src={p.combo.video}
+                              poster={p.combo.poster}
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              preload="auto"
+                              aria-hidden="true"
+                            />
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                  </article>
-                </Reveal>
-              ) : null}
-              <div className={`${styles.gridAuto} ${styles.cols3}`}>
-                {portfolio.slice(1).map((p, i) => (
-                  <Reveal key={p.nm} delay={(i % 3) * 0.08}>
-                    <TiltCard className={styles.projCard} max={5}>
-                      <div className={styles.projMedia}>
+                          <img
+                            className={styles.comboPhone}
+                            src={p.combo.phone}
+                            alt=""
+                            aria-hidden="true"
+                            loading="lazy"
+                          />
+                        </div>
+                      ) : p.gallery ? (
+                        <GalleryFade images={p.gallery} className={styles.featuredGallery} />
+                      ) : (
                         <ProjectMedia
-                          src={p.media}
+                          src={p.media ?? ""}
                           poster={p.poster}
-                          className={styles.projMediaEl}
+                          className={styles.featuredVideo}
                         />
-                        <span className={styles.projMediaScrim} aria-hidden="true" />
-                      </div>
-                      <div className={styles.projCardBody}>
+                      )}
+                      <div className={styles.featuredBody}>
                         <div className={styles.projCat}>{p.cat}</div>
-                        <h3 className={styles.cardTitle} style={{ margin: "0 0 8px" }}>
-                          {p.nm}
-                        </h3>
-                        <p className={styles.cardText}>{p.p}</p>
+                        <h3 className={styles.projName}>{p.nm}</h3>
+                        <p className={styles.projText}>{p.p}</p>
+                        <div className={styles.featuredStores}>
+                          <span className={styles.featuredStore}>App Store</span>
+                          <span className={styles.featuredStore}>Google Play</span>
+                        </div>
                       </div>
-                    </TiltCard>
+                    </article>
                   </Reveal>
                 ))}
               </div>
+              <Reveal>
+                <a
+                  href="https://github.com/progixdev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.moreProjects}
+                >
+                  <div>
+                    <div className={styles.moreNum}>140+</div>
+                    <div className={styles.moreLabel}>
+                      projets livrés à ce jour — ceci n’est qu’un aperçu de nos réalisations.
+                    </div>
+                  </div>
+                  <span className={styles.moreLink}>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.2 3.44 9.6 8.21 11.16.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.6-4.04-1.6-.55-1.36-1.34-1.72-1.34-1.72-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.24 2.86.12 3.16.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.53-5.49 5.82.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z" />
+                    </svg>
+                    github.com/progixdev
+                    <span className={styles.btnArrow}>→</span>
+                  </span>
+                </a>
+              </Reveal>
             </div>
           </section>
 

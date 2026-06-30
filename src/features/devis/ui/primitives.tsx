@@ -18,7 +18,6 @@ export function SectionHeader({ num, title, lead }: { num: string; title: string
         <h2 className={styles.secheadTitle}>{title}</h2>
         <div className={styles.secheadRule} aria-hidden="true">
           <span className={styles.secheadRuleBar} />
-          <span className={styles.secheadRuleArrow}>↗</span>
         </div>
         {lead ? <p className={styles.secheadLead}>{lead}</p> : null}
       </div>
