@@ -23,8 +23,8 @@ const CONTAINER: CSSProperties = {
 };
 
 const CARD: CSSProperties = {
-  background: "linear-gradient(180deg,#fff,#EDF4FF)",
-  border: "1px solid #D6E3F1",
+  background: "var(--card-grad)",
+  border: "1px solid var(--card-bd)",
   borderRadius: "14px",
   padding: "22px 24px",
   boxShadow: "var(--shadow)",
@@ -33,7 +33,7 @@ const CARD: CSSProperties = {
 const CARD_TITLE: CSSProperties = {
   fontFamily: "var(--font-disp)",
   fontSize: "15px",
-  color: "var(--navy)",
+  color: "#fff",
   fontWeight: 600,
   margin: "0 0 7px",
   display: "flex",
@@ -71,7 +71,7 @@ const GRID_AUTO: CSSProperties = {
 const H3_DIAMOND: CSSProperties = {
   fontFamily: "var(--font-disp)",
   fontSize: "19px",
-  color: "var(--navy)",
+  color: "#fff",
   fontWeight: 600,
   margin: "34px 0 12px",
   display: "flex",
@@ -81,7 +81,7 @@ const H3_DIAMOND: CSSProperties = {
 
 const INFOBOX: CSSProperties = {
   background: "var(--tint-2)",
-  border: "1px solid #D5EAFB",
+  border: "1px solid rgba(56,182,255,0.22)",
   borderRadius: "14px",
   padding: "18px 22px",
   margin: "16px 0",
@@ -109,7 +109,7 @@ const INFOBOX_TITLE: CSSProperties = {
   fontFamily: "var(--font-disp)",
   fontSize: "14px",
   margin: "0 0 4px",
-  color: "var(--navy)",
+  color: "#fff",
   fontWeight: 600,
 };
 
@@ -149,8 +149,8 @@ const TAG_BASE: CSSProperties = {
 
 const STEP_CARD: CSSProperties = {
   flex: "1 1 180px",
-  background: "linear-gradient(180deg,#fff,#EDF4FF)",
-  border: "1px solid #D6E3F1",
+  background: "var(--card-grad)",
+  border: "1px solid var(--card-bd)",
   borderRadius: "14px",
   padding: "16px 14px",
   boxShadow: "var(--shadow)",
@@ -168,7 +168,7 @@ const STEP_TITLE: CSSProperties = {
   fontFamily: "var(--font-disp)",
   fontWeight: 600,
   fontSize: "14px",
-  color: "var(--navy)",
+  color: "#fff",
   margin: "6px 0 4px",
 };
 
@@ -186,7 +186,7 @@ const STEP_RULE: CSSProperties = {
 };
 
 const ARCH_NODE: CSSProperties = {
-  background: "#fff",
+  background: "var(--card)",
   border: "1.5px solid var(--line)",
   borderRadius: "11px",
   padding: "12px 14px",
@@ -199,7 +199,7 @@ const ARCH_NODE_TITLE: CSSProperties = {
   fontFamily: "var(--font-disp)",
   fontWeight: 600,
   fontSize: "12.5px",
-  color: "var(--navy)",
+  color: "#fff",
 };
 
 const ARCH_NODE_SUB: CSSProperties = {
@@ -283,8 +283,8 @@ function InfoCallout({
   iconBg = "var(--cyan)",
   icon = "i",
   title,
-  titleColor = "var(--navy)",
-  borderColor = "#D5EAFB",
+  titleColor = "#fff",
+  borderColor = "rgba(56,182,255,0.22)",
   background = "var(--tint-2)",
   children,
 }: {
@@ -356,10 +356,15 @@ const cy = (label: string): Tag => ({
   fg: "var(--cyan-ink)",
   bd: "none",
 });
-const nv = (label: string): Tag => ({ label, bg: "#E9EEF6", fg: "var(--navy)", bd: "none" });
+const nv = (label: string): Tag => ({
+  label,
+  bg: "rgba(255,255,255,0.08)",
+  fg: "#cdd9ec",
+  bd: "none",
+});
 const gh = (label: string): Tag => ({
   label,
-  bg: "#fff",
+  bg: "rgba(255,255,255,0.05)",
   fg: "var(--muted)",
   bd: "1px solid var(--line)",
 });
@@ -374,7 +379,10 @@ const modules: Module[] = [
     badge: "Cœur de la plateforme",
     desc: "Un répertoire de fournisseurs chinois fiables, sélectionnés et qualifiés par Progix et le client.",
     feats: [
-      F("Fiche détaillée par fournisseur", " : spécialité, catégories couvertes, niveau de fiabilité."),
+      F(
+        "Fiche détaillée par fournisseur",
+        " : spécialité, catégories couvertes, niveau de fiabilité.",
+      ),
       F("Indicateur de confiance visuel", " (badge, score ou code couleur)."),
       F("", "Catégories de produits couvertes par chaque fournisseur."),
     ],
@@ -548,7 +556,7 @@ export function CahierDocument() {
               style={{
                 fontFamily: "var(--font-disp)",
                 fontSize: "clamp(23px,3vw,28px)",
-                color: "var(--navy)",
+                color: "#fff",
                 fontWeight: 600,
                 letterSpacing: "-.01em",
                 margin: "12px 0 0",
@@ -597,7 +605,7 @@ export function CahierDocument() {
                     style={{
                       fontFamily: "var(--font-disp)",
                       fontWeight: 500,
-                      color: "var(--navy)",
+                      color: "#fff",
                       fontSize: "15px",
                     }}
                   >
@@ -664,7 +672,8 @@ export function CahierDocument() {
             >
               Là où les autres plateformes vendent des produits, SourcePro vend de la{" "}
               <Strong>fiabilité</Strong> et de la tranquillité d’esprit. L’utilisateur ne paie pas
-              pour acheter — il s’abonne pour <Strong>savoir où acheter sans se faire avoir</Strong>.
+              pour acheter — il s’abonne pour <Strong>savoir où acheter sans se faire avoir</Strong>
+              .
             </p>
             <div
               style={{
@@ -848,10 +857,11 @@ export function CahierDocument() {
               }}
             >
               La valeur de SourcePro repose sur la qualité de sa base de fournisseurs. La stratégie
-              consiste à identifier en priorité les <Strong>fournisseurs les plus fiables et
-              reconnus</Strong>, en se concentrant d’abord sur les acteurs majeurs, puis à enrichir
-              progressivement la base par catégorie. La structuration des fiches et l’expérience de
-              recherche sont affinées ensemble par itérations tout au long du projet.
+              consiste à identifier en priorité les{" "}
+              <Strong>fournisseurs les plus fiables et reconnus</Strong>, en se concentrant d’abord
+              sur les acteurs majeurs, puis à enrichir progressivement la base par catégorie. La
+              structuration des fiches et l’expérience de recherche sont affinées ensemble par
+              itérations tout au long du projet.
             </p>
           </div>
         </section>
@@ -870,16 +880,16 @@ export function CahierDocument() {
                 organisé par catégorie de produits.
               </FeatureCard>
               <FeatureCard icon="2" iconBg="var(--navy)" title="Classer par niveau de qualité">
-                Distinguer les références phares, intermédiaires et à éviter, pour identifier le
-                bon produit en un coup d’œil.
+                Distinguer les références phares, intermédiaires et à éviter, pour identifier le bon
+                produit en un coup d’œil.
               </FeatureCard>
               <FeatureCard icon="3" iconBg="var(--cyan)" title="Trouver vite, sans se perdre">
                 Permettre de trouver rapidement le bon produit sans se noyer dans des millions
                 d’offres — une véritable « application de poche ».
               </FeatureCard>
               <FeatureCard icon="4" iconBg="var(--navy)" title="Générer des revenus récurrents">
-                Asseoir un modèle d’abonnement clair et à forte valeur perçue, consulté avant
-                chaque achat.
+                Asseoir un modèle d’abonnement clair et à forte valeur perçue, consulté avant chaque
+                achat.
               </FeatureCard>
             </div>
             <InfoCallout title="Objectif business du porteur">
@@ -1066,8 +1076,8 @@ export function CahierDocument() {
               <div
                 key={m.n}
                 style={{
-                  background: "linear-gradient(180deg,#fff,#EDF4FF)",
-                  border: "1px solid #D6E3F1",
+                  background: "var(--card-grad)",
+                  border: "1px solid var(--card-bd)",
                   borderRadius: "14px",
                   margin: "16px 0",
                   boxShadow: "var(--shadow)",
@@ -1107,7 +1117,7 @@ export function CahierDocument() {
                       style={{
                         fontFamily: "var(--font-disp)",
                         fontSize: "16px",
-                        color: "var(--navy)",
+                        color: "#fff",
                         fontWeight: 600,
                         margin: "2px 0 3px",
                         display: "flex",
@@ -1293,9 +1303,9 @@ export function CahierDocument() {
                 aisée.
               </FeatureCard>
               <FeatureCard icon="↗" iconBg="var(--cyan)" title="Base de données optimisée">
-                Une architecture de données optimisée pour la <Strong>recherche et le filtrage
-                rapides</Strong> (catégories, niveaux de qualité, fiches), taillée pour la solidité
-                et l’intégrité des données.
+                Une architecture de données optimisée pour la{" "}
+                <Strong>recherche et le filtrage rapides</Strong> (catégories, niveaux de qualité,
+                fiches), taillée pour la solidité et l’intégrité des données.
               </FeatureCard>
               <FeatureCard icon="↗" iconBg="var(--navy)" title="Hébergement cloud scalable">
                 Infrastructure cloud qui s’adapte à la charge utilisateur, avec sauvegardes
@@ -1417,7 +1427,7 @@ export function CahierDocument() {
                     style={{
                       ...ARCH_NODE,
                       border: "1.5px solid var(--cyan)",
-                      background: "linear-gradient(180deg,#fff,var(--tint-2))",
+                      background: "var(--card-grad)",
                     }}
                   >
                     <div style={ARCH_NODE_TITLE}>API</div>
@@ -1427,7 +1437,7 @@ export function CahierDocument() {
                     style={{
                       ...ARCH_NODE,
                       border: "1.5px solid var(--navy)",
-                      background: "linear-gradient(180deg,#fff,#EEF2F8)",
+                      background: "var(--card-grad)",
                     }}
                   >
                     <div style={ARCH_NODE_TITLE}>Base de données</div>
@@ -1515,8 +1525,8 @@ export function CahierDocument() {
             <SectionHeader num="09 — LIVRABLES" title="Livrables & publication" />
             <div
               style={{
-                background: "linear-gradient(180deg,#fff,#EDF4FF)",
-                border: "1px solid #D6E3F1",
+                background: "var(--card-grad)",
+                border: "1px solid var(--card-bd)",
                 borderRadius: "14px",
                 padding: "8px 24px",
                 boxShadow: "var(--shadow)",
@@ -1588,7 +1598,7 @@ export function CahierDocument() {
                         fontFamily: "var(--font-disp)",
                         fontWeight: 600,
                         fontSize: "15px",
-                        color: "var(--navy)",
+                        color: "#fff",
                         marginBottom: "3px",
                       }}
                     >
@@ -1651,8 +1661,8 @@ export function CahierDocument() {
               icon="!"
               iconBg="var(--amber)"
               title="Après les 90 jours"
-              titleColor="#8A5A12"
-              borderColor="#F3DFBC"
+              titleColor="#f0c98a"
+              borderColor="rgba(232,161,58,0.3)"
               background="var(--amber-bg)"
             >
               Maintenance mensuelle en option (support continu). Les nouvelles fonctionnalités
@@ -1994,8 +2004,8 @@ export function CahierDocument() {
               icon="▸"
               iconBg="var(--amber)"
               title="Comptes & accès à fournir"
-              titleColor="#8A5A12"
-              borderColor="#F3DFBC"
+              titleColor="#f0c98a"
+              borderColor="rgba(232,161,58,0.3)"
               background="var(--amber-bg)"
             >
               Compte <Strong>Apple Developer</Strong> (99 $/an) et{" "}
@@ -2075,8 +2085,8 @@ function UserCard({
   return (
     <div
       style={{
-        background: "linear-gradient(180deg,#fff,#EDF4FF)",
-        border: "1px solid #D6E3F1",
+        background: "var(--card-grad)",
+        border: "1px solid var(--card-bd)",
         borderRadius: "14px",
         margin: "16px 0",
         boxShadow: "var(--shadow)",
@@ -2116,7 +2126,7 @@ function UserCard({
             style={{
               fontFamily: "var(--font-disp)",
               fontSize: "16px",
-              color: "var(--navy)",
+              color: "#fff",
               fontWeight: 600,
               margin: "2px 0 3px",
             }}
@@ -2196,7 +2206,7 @@ function JourneyHeading({
       style={{
         fontFamily: "var(--font-disp)",
         fontSize: "18px",
-        color: "var(--navy)",
+        color: "#fff",
         fontWeight: 600,
         margin: `${marginTop} 0 12px`,
         display: "flex",

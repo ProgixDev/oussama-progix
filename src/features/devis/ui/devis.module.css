@@ -12,39 +12,43 @@
   --cyan: #38b6ff;
   /* Text-weight cyan, deepened from the source #0e7fc4 to clear WCAG AA (>=4.5:1)
      on white and the tinted section backgrounds. */
-  --cyan-ink: #0a6398;
+  --cyan-ink: #6fc4ff;
   --cyan-deep: #1e97e0;
-  --ink: #16202e;
-  --slate: #51616f;
+  --ink: #eaf1fb;
+  --slate: #a7b7d2;
   /* Secondary text. Darkened from the source #8a98a6 to clear WCAG AA on white /
      near-white card backgrounds (text on the darker sections uses --slate). */
-  --muted: #5f6c79;
-  --line: #e4eaf1;
-  --line-soft: #eef3f8;
-  --paper: #f6f9fc;
-  --tint: #eaf4fd;
-  --tint-2: #f0f8ff;
-  --amber: #e08a1e;
-  --amber-bg: #fdf3e3;
-  --ok: #0f9d6b;
-  --ok-bg: #e9f8f1;
+  --muted: #7d8ca3;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --paper: #0e1a2e;
+  --tint: rgba(56, 182, 255, 0.14);
+  --tint-2: rgba(56, 182, 255, 0.06);
+  --amber: #e8a13a;
+  --amber-bg: rgba(224, 138, 30, 0.12);
+  --ok: #34e2c0;
+  --ok-bg: rgba(52, 226, 192, 0.1);
+  /* Glass card surfaces (dark cinematic) */
+  --card: rgba(255, 255, 255, 0.04);
+  --card-grad: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+  --card-bd: rgba(255, 255, 255, 0.1);
   /* Alternating section bands — kept far enough apart to read as rhythm, not a
      flat field. Referenced by .sectionA/.sectionB and the inline page sections. */
-  --band-a: #f4f8fd;
-  --band-b: #d4e2f2;
+  --band-a: #070b14;
+  --band-b: #0b1426;
   /* Card elevation — deepened so cards sit ON the band instead of dissolving. */
-  --shadow: 0 1px 3px rgba(12, 35, 64, 0.07), 0 14px 30px rgba(12, 35, 64, 0.1);
-  --shadow-lg: 0 2px 6px rgba(12, 35, 64, 0.06), 0 18px 50px rgba(12, 35, 64, 0.1);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 16px 34px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 2px 6px rgba(0, 0, 0, 0.4), 0 22px 54px rgba(0, 0, 0, 0.55);
   --font-disp: var(--font-display), "Space Grotesk", sans-serif;
   --font-text: var(--font-body), "Inter", sans-serif;
   /* Second accent — a disciplined two-colour system: cyan = information/links,
      indigo = action/commitment, navy = structure. Indigo is spent sparingly. */
-  --indigo: #5b6bf0;
-  --indigo-ink: #4250c8;
-  /* Brand focus ring (white spacer + cyan halo; reads on light bands & navy). */
-  --focus-ring: 0 0 0 2px #fff, 0 0 0 4px var(--cyan-ink);
+  --indigo: #7c5cff;
+  --indigo-ink: #9a8bff;
+  /* Brand focus ring (dark spacer + cyan halo). */
+  --focus-ring: 0 0 0 2px #060912, 0 0 0 4px var(--cyan);
 
-  background: #fff;
+  background: #060912;
   min-height: 100vh;
   font-family: var(--font-text);
   color: var(--slate);
@@ -65,7 +69,9 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #f6f9fc;
+  background: rgba(6, 9, 18, 0.72);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--line);
   transition:
     box-shadow 0.25s ease,
@@ -73,8 +79,8 @@
 }
 
 .headerScrolled {
-  box-shadow: 0 6px 22px rgba(12, 35, 64, 0.1);
-  background: #f6f9fc;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
+  background: rgba(6, 9, 18, 0.82);
 }
 
 .headerInner {
@@ -97,6 +103,7 @@
   height: 25px;
   width: auto;
   display: block;
+  filter: brightness(0) invert(1);
 }
 
 .nav {
@@ -155,7 +162,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: 11px;
   box-shadow: 0 2px 10px rgba(12, 35, 64, 0.05);
@@ -167,7 +174,7 @@
   width: 19px;
   height: 2px;
   border-radius: 2px;
-  background: var(--navy);
+  background: #fff;
   transition:
     transform 0.25s ease,
     opacity 0.2s ease;
@@ -189,7 +196,9 @@
   display: none;
   border-top: 1px solid var(--line);
   /* Fully opaque so page text never shows through the open menu. */
-  background: #f6f9fc;
+  background: rgba(8, 12, 22, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 14px 26px rgba(12, 35, 64, 0.12);
 }
 
@@ -206,7 +215,7 @@
   font-family: var(--font-disp);
   font-weight: 500;
   font-size: 15px;
-  color: var(--navy);
+  color: #fff;
   text-decoration: none;
   padding: 12px 14px;
   border-radius: 10px;
@@ -313,11 +322,7 @@
 }
 
 .coverTitleAccent {
-  background: linear-gradient(115deg, #9fd8ff, #38b6ff 70%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--cyan);
   font-weight: 600;
 }
 
@@ -466,8 +471,8 @@
   font-size: clamp(66px, 12vw, 140px);
   line-height: 0.8;
   letter-spacing: -0.05em;
-  color: rgba(91, 107, 240, 0.07);
-  -webkit-text-stroke: 1.6px rgba(91, 107, 240, 0.28);
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.07);
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -487,11 +492,11 @@
   font-size: 11px;
   letter-spacing: 1.4px;
   color: var(--cyan-ink);
-  background: #fff;
-  border: 1px solid #d5e8f8;
+  background: var(--card);
+  border: 1px solid var(--card-bd);
   border-radius: 999px;
   padding: 5px 14px 5px 10px;
-  box-shadow: 0 2px 12px rgba(12, 35, 64, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 .secheadDot {
@@ -505,7 +510,7 @@
 .secheadTitle {
   font-family: var(--font-disp);
   font-size: clamp(28px, 3.6vw, 36px);
-  color: var(--navy);
+  color: #fff;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 15px 0 0;
@@ -571,7 +576,7 @@
 .h3 {
   font-family: var(--font-disp);
   font-size: 19px;
-  color: var(--navy);
+  color: #fff;
   font-weight: 600;
   margin: 28px 0 8px;
   display: flex;
@@ -591,7 +596,7 @@
 /* ---------- Info boxes ---------- */
 .infobox {
   background: var(--tint-2);
-  border: 1px solid #d5eafb;
+  border: 1px solid rgba(56, 182, 255, 0.22);
   border-radius: 14px;
   padding: 18px 22px;
   margin: 16px 0;
@@ -629,7 +634,7 @@
   font-size: 16px;
   line-height: 1.3;
   margin: 0 0 5px;
-  color: var(--navy);
+  color: #fff;
   font-weight: 600;
 }
 
@@ -710,9 +715,11 @@
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #d6e3f1;
+  background: var(--card-grad);
+  border: 1px solid var(--card-bd);
   border-radius: 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 22px 24px;
   box-shadow: var(--shadow);
   transition:
@@ -724,7 +731,7 @@
 .cardTitle {
   font-family: var(--font-disp);
   font-size: 16px;
-  color: var(--navy);
+  color: #fff;
   font-weight: 600;
   margin: 0 0 7px;
   display: flex;
@@ -819,7 +826,7 @@
   text-align: right;
   font-family: var(--font-disp);
   font-weight: 600;
-  color: var(--navy);
+  color: #fff;
   white-space: nowrap;
 }
 
@@ -910,10 +917,10 @@
 }
 
 .payCard {
-  border: 1px solid var(--line);
+  border: 1px solid var(--card-bd);
   border-radius: 14px;
   padding: 18px;
-  background: #fff;
+  background: var(--card-grad);
   box-shadow: var(--shadow);
 }
 
@@ -928,7 +935,7 @@
   font-family: var(--font-disp);
   font-weight: 600;
   font-size: 14px;
-  color: var(--navy);
+  color: #fff;
   margin: 7px 0 3px;
 }
 
@@ -943,7 +950,7 @@
   font-family: var(--font-disp);
   font-weight: 700;
   font-size: 24px;
-  color: var(--navy);
+  color: #fff;
   margin-top: 8px;
   border-top: 1px solid var(--line);
   padding-top: 10px;
@@ -1064,7 +1071,7 @@
   text-transform: uppercase;
   padding: 4px 11px;
   border-radius: 999px;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   color: var(--muted);
 }
@@ -1082,7 +1089,7 @@
 }
 
 .trustCell {
-  background: #fff;
+  background: var(--card);
   padding: 18px 16px;
   text-align: center;
 }
@@ -1091,7 +1098,7 @@
   font-family: var(--font-disp);
   font-weight: 700;
   font-size: 24px;
-  color: var(--navy);
+  color: #fff;
 }
 
 .trustLabel {
@@ -1105,7 +1112,7 @@
 .subhead {
   font-family: var(--font-disp);
   font-size: 19px;
-  color: var(--navy);
+  color: #fff;
   font-weight: 600;
   margin: 24px 0 8px;
   display: flex;
@@ -1231,15 +1238,15 @@
   border: 1.5px solid var(--cyan);
   border-radius: 14px;
   padding: 24px;
-  background: linear-gradient(180deg, #fff, #f3faff);
-  box-shadow: 0 10px 34px rgba(56, 182, 255, 0.1);
+  background: linear-gradient(180deg, rgba(56, 182, 255, 0.08), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
 }
 
 .signProvider {
   border: 1.5px solid var(--cyan);
   border-radius: 14px;
   padding: 24px;
-  background: linear-gradient(180deg, #fff, var(--tint-2));
+  background: var(--card-grad);
 }
 
 .signKicker {
@@ -1298,7 +1305,7 @@
 .fieldInput {
   width: 100%;
   border: none;
-  border-bottom: 1.5px solid #cbd9e6;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.22);
   background: transparent;
   font-family: var(--font-text);
   font-size: 14px;
@@ -1364,8 +1371,8 @@
   letter-spacing: 0.4px;
   text-transform: uppercase;
   color: var(--cyan-ink);
-  background: #eaf4fd;
-  border: 1px solid #d5e8f8;
+  background: rgba(56, 182, 255, 0.12);
+  border: 1px solid rgba(56, 182, 255, 0.25);
   border-radius: 6px;
   cursor: pointer;
   padding: 3px 9px;
@@ -1666,11 +1673,7 @@
 }
 
 .bandTitleAccent {
-  background: linear-gradient(115deg, #9fd8ff, #38b6ff 70%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--cyan);
 }
 
 .bandSub {

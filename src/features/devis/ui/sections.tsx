@@ -1,6 +1,15 @@
 import { cn } from "@/lib/utils";
 import { BadgeHeading, InfoBox, Pill, SectionHeader, Strong, SubHeading } from "./primitives";
-import { incl1, incl2, incl3, investment, payments, phases, trust } from "./content";
+import {
+  incl1,
+  incl2,
+  incl3,
+  priceBreakdown,
+  priceTotal,
+  payments,
+  phases,
+  trust,
+} from "./content";
 import styles from "./devis.module.css";
 
 /** A styled reference to another (not-yet-implemented) document in the set. */
@@ -37,9 +46,9 @@ export function BodySections() {
           <p className={styles.pLead}>
             Le présent devis contractuel (le « Devis ») définit les modalités selon lesquelles{" "}
             <Strong>Progix Inc.</Strong> (le « Prestataire ») s’engage à concevoir, développer et
-            livrer <Strong>SourcePro</Strong> (l’«
-            Application »), une application mobile de sourcing et de validation de fournisseurs fiables, pour le compte du client
-            signataire (le « Client »).
+            livrer <Strong>SourcePro</Strong> (l’« Application »), une application mobile de
+            sourcing et de validation de fournisseurs fiables, pour le compte du client signataire
+            (le « Client »).
           </p>
           <p className={styles.p}>
             Il précise les prestations incluses, l’investissement et son échéancier,
@@ -93,34 +102,39 @@ export function BodySections() {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th>Ce que couvre le forfait</th>
+                  <th>Poste</th>
+                  <th className={styles.thRight}>Prix</th>
                 </tr>
               </thead>
               <tbody>
-                {investment.map((row, idx) => (
+                {priceBreakdown.map((row, idx) => (
                   <tr key={idx} className={idx % 2 === 1 ? styles.tableAlt : undefined}>
                     <td>
-                      {"strong" in row && row.strong ? (
-                        <>
-                          <Strong>{row.strong}</Strong>
-                          {row.text}
-                        </>
-                      ) : (
-                        row.text
-                      )}
+                      <Strong>{row.label}</Strong>
+                      {row.note}
                     </td>
+                    <td className={styles.tableNum}>{row.price}</td>
                   </tr>
                 ))}
+                <tr className={styles.tableTotal}>
+                  <td>Total — forfait fixe, tout compris</td>
+                  <td className={styles.tableTotalAmount}>{priceTotal}</td>
+                </tr>
               </tbody>
             </table>
           </div>
+          <p className={styles.note} style={{ fontStyle: "normal" }}>
+            Décomposition indicative d’un forfait global et fixe : le prix est ferme et tout
+            compris. Les montants par poste sont donnés à titre informatif et ne sont pas facturés
+            séparément.
+          </p>
           <div className={cn(styles.totalPanel, styles.lift)}>
             <div className={styles.totalPanelInner}>
               <span className={styles.totalArrow} aria-hidden="true">
                 ↗
               </span>
               <div className={styles.totalEyebrow}>Montant total · forfait fixe</div>
-              <div className={styles.totalValue}>5 000 €</div>
+              <div className={styles.totalValue}>4 850 €</div>
               <div className={styles.totalNote}>
                 Prix ferme, tout compris jusqu’à la mise en marché. Aucun coût caché.
               </div>
@@ -130,7 +144,7 @@ export function BodySections() {
             Progix étant une entreprise <Strong>canadienne</Strong> et le Client étant établi en{" "}
             <Strong>France</Strong>, la prestation n’est pas assujettie à la TVA ni à aucune taxe de
             vente (service transfrontalier — autoliquidation par le preneur le cas échéant).{" "}
-            <Strong>Le montant de 5 000 € correspond au montant net à payer.</Strong>
+            <Strong>Le montant de 4 850 € correspond au montant net à payer.</Strong>
           </InfoBox>
           <SubHeading>Échéancier de paiement</SubHeading>
           <div className={styles.grid3} style={{ margin: "6px 0 16px" }}>
@@ -144,8 +158,11 @@ export function BodySections() {
             ))}
           </div>
           <p style={{ fontSize: "13px", color: "var(--slate)", margin: 0, lineHeight: 1.6 }}>
-            Paiements par <Strong>Stripe</Strong> ou <Strong>virement bancaire</Strong>, en euros.
-            Aucun travail de développement ne débute avant réception de l’acompte. Le modèle de revenus de l’Application repose sur un <Strong>abonnement mensuel</Strong> donnant accès à l’ensemble de la base qualifiée de fournisseurs fiables.
+            Règlement en <Strong>5 mensualités égales de 970 €</Strong> par <Strong>Stripe</Strong>{" "}
+            ou <Strong>virement bancaire</Strong>, en euros. Aucun travail de développement ne
+            débute avant réception du <Strong>premier versement</Strong>. Le modèle de revenus de
+            l’Application repose sur un <Strong>abonnement mensuel</Strong> donnant accès à
+            l’ensemble de la base qualifiée de fournisseurs fiables.
           </p>
         </div>
       </section>
@@ -217,25 +234,39 @@ export function BodySections() {
               Garantie de performance
             </span>
             <h3 className={styles.guaranteeTitle}>
-              Un coût d’acquisition par client <em>payant</em>
+              Un coût d’acquisition d’<em>1 € par utilisateur</em>
             </h3>
             <p className={styles.guaranteeText}>
-              Engagement de moyens sur le coût d’acquisition par utilisateur payant. Si les
-              objectifs ne sont pas atteints au terme des 90 jours, Progix poursuit l’accompagnement{" "}
+              Progix s’engage sur un{" "}
+              <strong style={{ color: "#fff", fontWeight: 600 }}>
+                coût d’acquisition de 1 € par utilisateur acquis
+              </strong>{" "}
+              et un{" "}
+              <strong style={{ color: "#fff", fontWeight: 600 }}>
+                taux de conversion de 25 % en abonnement
+              </strong>
+              . Si ces objectifs ne sont pas atteints au terme des 90 jours, Progix poursuit
+              l’accompagnement{" "}
               <strong style={{ color: "#fff", fontWeight: 600 }}>sans frais</strong> jusqu’à leur
               atteinte.
             </p>
             <div className={styles.guaranteeStats}>
               <div>
-                <div className={styles.guaranteeStatValue}>90 j</div>
+                <div className={styles.guaranteeStatValue}>1 €</div>
                 <div className={styles.guaranteeStatLabel}>
-                  d’accompagnement & de suivi hebdomadaire des KPIs
+                  coût d’acquisition garanti par utilisateur acquis
                 </div>
               </div>
               <div>
-                <div className={styles.guaranteeStatValue}>A/B</div>
+                <div className={styles.guaranteeStatValue}>25 %</div>
                 <div className={styles.guaranteeStatLabel}>
-                  tests de paywalls & d’audiences pour optimiser la conversion
+                  taux de conversion des utilisateurs en abonnés
+                </div>
+              </div>
+              <div>
+                <div className={styles.guaranteeStatValue}>90 j</div>
+                <div className={styles.guaranteeStatLabel}>
+                  d’accompagnement & de suivi hebdomadaire des KPIs
                 </div>
               </div>
               <div>
@@ -262,7 +293,7 @@ export function BodySections() {
           <InfoBox variant="ok" icon="★" title="Vous êtes propriétaire à 100 %">
             Le Client est propriétaire de l’intégralité de l’Application. La propriété
             intellectuelle est <Strong>transférée progressivement à mesure des paiements</Strong> :
-            chaque jalon réglé transfère la portion correspondante des travaux. À la livraison
+            chaque versement réglé transfère la portion correspondante des travaux. À la livraison
             finale, une documentation technique complète est remise — l’Application peut être
             reprise par tout développeur de votre choix. <Strong>Aucun verrouillage.</Strong>
           </InfoBox>
@@ -300,8 +331,8 @@ export function BodySections() {
                 Évolutions & nouvelles fonctionnalités
               </h3>
               <p className={styles.cardText}>
-                <Strong>80 $ / heure</Strong> — pour toute évolution postérieure de l’Application (version web,
-                analytics avancés, nouvelles catégories de fournisseurs…).
+                <Strong>80 $ / heure</Strong> — pour toute évolution postérieure de l’Application
+                (version web, analytics avancés, nouvelles catégories de fournisseurs…).
               </p>
             </div>
           </div>
@@ -331,6 +362,49 @@ export function BodySections() {
             dédié (<DocRef>« Calendrier des sprints »</DocRef>), aligné sur le présent échéancier de
             paiement.
           </InfoBox>
+          <SubHeading>Garantie de délai — compensation en cas de retard</SubHeading>
+          <p className={styles.p}>
+            Si la livraison est retardée pour une cause <Strong>imputable à Progix</Strong>, le
+            Client bénéficie d’une compensation <Strong>dès le premier jour de retard</Strong>, sous
+            forme de réduction du montant total, croissante avec la durée du retard :
+          </p>
+          <div className={styles.tableWrap}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Retard de livraison (imputable à Progix)</th>
+                  <th className={styles.thRight}>Compensation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>De 1 à 10 jours</td>
+                  <td className={styles.tableNum}>−5 % du montant total</td>
+                </tr>
+                <tr className={styles.tableAlt}>
+                  <td>De 11 à 20 jours</td>
+                  <td className={styles.tableNum}>−10 % du montant total</td>
+                </tr>
+                <tr>
+                  <td>De 21 à 30 jours</td>
+                  <td className={styles.tableNum}>−15 % du montant total</td>
+                </tr>
+                <tr className={styles.tableAlt}>
+                  <td>Au-delà de 30 jours</td>
+                  <td className={styles.tableNum}>−20 % du montant total (plafond)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <InfoBox icon="!" title="Le retard doit être imputable à Progix">
+            Cette compensation s’applique <Strong>uniquement aux retards causés par Progix</Strong>.
+            Les retards imputables au Client —{" "}
+            <Strong>
+              validations tardives, retours et feedbacks, contenus, informations ou accès non
+              fournis en temps utile
+            </Strong>{" "}
+            — repoussent d’autant la date de livraison et ne donnent lieu à aucune compensation.
+          </InfoBox>
         </div>
       </section>
 
@@ -355,7 +429,8 @@ export function BodySections() {
               accompagne la création et publie pour le Client.
             </li>
             <li className={styles.arrowItem}>
-              Créer un compte <Strong>Stripe</Strong> et fournir un accès développeur pour les paiements le cas échéant.
+              Créer un compte <Strong>Stripe</Strong> et fournir un accès développeur pour les
+              paiements le cas échéant.
             </li>
             <li className={styles.arrowItem}>
               Prévoir le <Strong>budget publicitaire minimum</Strong> de 2 000 € pour le lancement.
@@ -367,12 +442,13 @@ export function BodySections() {
           </ul>
           <BadgeHeading badge="B">Pénalités de retard</BadgeHeading>
           <p className={styles.p}>
-            En cas de retard de livraison imputable au Prestataire excédant{" "}
-            <Strong>dix (10) jours</Strong> par rapport au délai convenu, une compensation
-            financière progressive est appliquée sous forme de réduction du montant total,
-            augmentant proportionnellement à la durée du retard. Les retards imputables au Client
-            (absence de validation, de contenu ou d’accès) ne sont pas pris en compte dans ce
-            calcul.
+            En cas de retard de livraison imputable au Prestataire,{" "}
+            <Strong>dès le premier jour de retard</Strong>, une compensation financière progressive
+            est appliquée sous forme de réduction du montant total, selon le{" "}
+            <Strong>barème de compensation détaillé en section 06 (« Délai »)</Strong> (−5 % à −20 %
+            selon la durée du retard). Les retards imputables au Client (validations tardives,
+            retours et feedbacks, absence de contenu ou d’accès) ne sont pas pris en compte dans ce
+            calcul et repoussent d’autant la date de livraison.
           </p>
         </div>
       </section>

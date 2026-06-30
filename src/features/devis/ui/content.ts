@@ -12,7 +12,7 @@ export const cover = {
   subtitle:
     "Application mobile de sourcing et de validation de fournisseurs chinois fiables : base de données curée, recherche intelligente, fiches enrichies, avis et abonnement — plus back-office, landing page et accompagnement marketing jusqu’à la mise en marché. Un prix fixe, une équipe senior, votre propriété à 100 %.",
   badges: [
-    { l: "Montant total", v: "5 000 €", u: "" },
+    { l: "Montant total", v: "4 850 €", u: "" },
     { l: "Délai de livraison", v: "60", u: " jours" },
     { l: "Accompagnement", v: "90", u: " jours" },
   ],
@@ -34,9 +34,15 @@ export const trust = [
 /** Section 02 — prestations included, grouped. `b` is emphasized, `t` follows. */
 export const incl1 = [
   { b: "Application mobile iOS & Android", t: ", design sur mesure inclus" },
-  { b: "Base de données de fournisseurs fiables", t: ", classés par catégorie et niveau de qualité" },
+  {
+    b: "Base de données de fournisseurs fiables",
+    t: ", classés par catégorie et niveau de qualité",
+  },
   { b: "Recherche intelligente par produit", t: " mettant en avant les écarts de qualité" },
-  { b: "Fiches produits & fournisseurs enrichies", t: " (caractéristiques réelles, points de vigilance)" },
+  {
+    b: "Fiches produits & fournisseurs enrichies",
+    t: " (caractéristiques réelles, points de vigilance)",
+  },
   { b: "Système d’avis & de signalement", t: " communautaire" },
   { b: "Favoris, listes personnelles & alertes", t: " de nouveautés" },
   { b: "Back-office d’administration", t: " complet (fournisseurs, produits, catégories, avis)" },
@@ -72,24 +78,56 @@ export const investment = [
   { text: "Hébergement cloud (mise en place) & support 90 jours" },
 ] as const;
 
+/** Section 03 — detailed per-line price breakdown. Amounts sum to the fixed
+ * total (`priceTotal`). Edit any line here; keep the sum equal to the total. */
+export const priceBreakdown = [
+  { label: "Application mobile iOS + Android", note: " (design sur mesure)", price: "1 850 €" },
+  { label: "Back-office d’administration", note: " & gestion de contenu", price: "700 €" },
+  { label: "Base de données", note: " & moteur de recherche intelligent", price: "600 €" },
+  { label: "Landing page", note: " de présentation", price: "300 €" },
+  { label: "Abonnement in-app", note: " + publication App Store & Play Store", price: "400 €" },
+  {
+    label: "Accompagnement marketing 90 j",
+    note: " (formation, acteur UGC, scripts, suivi)",
+    price: "700 €",
+  },
+  { label: "Hébergement cloud", note: " (mise en place) & support 90 jours", price: "300 €" },
+] as const;
+
+export const priceTotal = "4 850 €";
+
+/** Section 03 — payment schedule: 5 equal monthly instalments of 970 € (20 %
+ * each) summing to the fixed total (4 850 €). */
 export const payments = [
   {
-    pct: "30 % · ACOMPTE",
+    pct: "MOIS 1 · 20 %",
     when: "Au démarrage",
     desc: "À la signature et à la réunion de cadrage",
-    amount: "1 500 €",
+    amount: "970 €",
   },
   {
-    pct: "40 % · LIVRAISON",
-    when: "À la livraison",
-    desc: "Application livrée et publiée sur les stores",
-    amount: "2 000 €",
+    pct: "MOIS 2 · 20 %",
+    when: "Échéance à 30 jours",
+    desc: "Pendant le développement de l’application",
+    amount: "970 €",
   },
   {
-    pct: "30 % · LANCEMENT",
-    when: "Après accompagnement",
-    desc: "À l’issue de la formation marketing",
-    amount: "1 500 €",
+    pct: "MOIS 3 · 20 %",
+    when: "Échéance à 60 jours",
+    desc: "À la livraison et la publication sur les stores",
+    amount: "970 €",
+  },
+  {
+    pct: "MOIS 4 · 20 %",
+    when: "Échéance à 90 jours",
+    desc: "Pendant l’accompagnement marketing",
+    amount: "970 €",
+  },
+  {
+    pct: "MOIS 5 · 20 %",
+    when: "Échéance à 120 jours",
+    desc: "Solde — fin de l’accompagnement",
+    amount: "970 €",
   },
 ] as const;
 
