@@ -120,10 +120,10 @@ const leaders: ReadonlyArray<Leader> = [
 type Extra = { label: string; name: string; desc: string; img?: string };
 const extras: ReadonlyArray<Extra> = [
   {
-    label: "Consultant",
+    label: "Responsable des ventes",
     name: "Aurelio Gustave",
     img: "/team/aurelio.jpg",
-    desc: "Conseil stratégique et pilotage de projets complexes.",
+    desc: "Développement commercial et relation client.",
   },
   {
     label: "Marketing",
@@ -145,7 +145,7 @@ const team: ReadonlyArray<Member> = [
     nm: "Achref Arabi",
     ro: "Frontend Senior",
     tag: "React · Three.js",
-    img: "/team/achref-arabi.png",
+    img: "/team/achraf-arabi.png",
   },
   {
     nm: "Mohamed L. Bouhezza",
